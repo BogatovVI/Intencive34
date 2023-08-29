@@ -13,7 +13,7 @@ public class ListUsersCredit implements CreditCalculation {
     //Подсчет суммы кредитов
     @Override
     public BigDecimal calcCreditAmount() {
-        BigDecimal CreditAmount = BigDecimal.valueOf(0);
+        BigDecimal CreditAmount = new BigDecimal("0");
 
         for(Credit credit : creditList){
             CreditAmount = CreditAmount.add(credit.getSumCredit());
