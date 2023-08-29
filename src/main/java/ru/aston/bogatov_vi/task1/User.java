@@ -1,9 +1,9 @@
 package ru.aston.bogatov_vi.task1;
 
 public class User {
-    int age;
-    String sourName;
-    String name;
+    private int age;
+    private String sourName;
+    private String name;
 
     public User(int age, String sourName, String name) {
         this.age = age;

@@ -2,10 +2,10 @@ package ru.aston.bogatov_vi.task1;
 
 import java.math.BigDecimal;
 
-public abstract class Credit implements Discount{
-    BigDecimal sumCredit;
-    User user;
-    int id;
+public abstract class Credit implements Discount {
+    protected BigDecimal sumCredit;
+    private User user;
+    private int id;
 
     public Credit(BigDecimal sumCredit, User user, int id) {
         this.sumCredit = sumCredit;
