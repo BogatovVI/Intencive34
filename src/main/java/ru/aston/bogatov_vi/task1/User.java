@@ -6,6 +6,9 @@ public class User {
     private String name;
 
     public User(int age, String sourName, String name) {
+        if (age <= 0 || sourName.equals("") || name.equals("")){
+            throw new CreditException("Некорректные данные пользователя", EnumException.CREATE_USER_EXCEPTION);
+        }
         this.age = age;
         this.sourName = sourName;
         this.name = name;
