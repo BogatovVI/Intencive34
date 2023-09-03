@@ -1,10 +1,10 @@
 package ru.aston.bogatov_vi.task1;
 
 public class CreditException extends RuntimeException{
-    private final int codeException;
+    private final EnumException codeException;
     private final String messageException;
 
-    public CreditException(String messageException, int codeException) {
+    public CreditException(String messageException, EnumException codeException) {
         this.codeException = codeException;
         this.messageException = messageException;
     }

@@ -10,7 +10,7 @@ public abstract class Credit implements Discount {
     public Credit(BigDecimal sumCredit, User user, int id) {
         BigDecimal sumCreditException = new BigDecimal("0");
         if (sumCredit.compareTo(sumCreditException) <= 0){
-            throw new CreditException("Сумма кредита должна быть больше нуля", 1);
+            throw new CreditException("Сумма кредита должна быть больше нуля", EnumException.CREATE_CREDIT_EXCEPTION);
         }
         this.sumCredit = sumCredit;
         this.user = user;

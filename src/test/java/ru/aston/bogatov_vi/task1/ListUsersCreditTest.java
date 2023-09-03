@@ -10,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListUsersCreditTest {
 
-    ListUsersCredit listUsersCredit;
-    TreeSet<Integer> testTree;
-    Map<Integer, User> testMap;
-    List<Credit> ParamList;
-    List<Credit> ParamList2;
+    private ListUsersCredit listUsersCredit;
+    private TreeSet<Integer> testTree;
+    private Map<Integer, User> testMap;
+    private List<Credit> paramList;
+
+    private List<Credit> paramList2;
 
     @BeforeEach
     void initListUsersCredit() {
@@ -22,15 +23,15 @@ class ListUsersCreditTest {
         User user2 = new User(44, "Богатов", "Владислав");
         User user3 = new User(55, "Нуриев", "Тамерлан");
 
-        ParamList = new ArrayList<>();
-        ParamList2 = new ArrayList<>();
-        ParamList.add(new CreditAuto(BigDecimal.valueOf(220000), user1, 1));
-        ParamList.add(new CreditConsumer(BigDecimal.valueOf(100000), user2, 2));
-        ParamList.add(new CreditAuto(BigDecimal.valueOf(50000), user3, 3));
-        ParamList2.add(new CreditAuto(BigDecimal.valueOf(220000), user1, 1));
-        ParamList2.add(new CreditConsumer(BigDecimal.valueOf(1000), user1, 2));
-        ParamList2.add(new CreditAuto(BigDecimal.valueOf(50000), user3, 3));
-        listUsersCredit = new ListUsersCredit(ParamList);
+        paramList = new ArrayList<>();
+        paramList2 = new ArrayList<>();
+        paramList.add(new CreditAuto(new BigDecimal("220000"), user1, 1));
+        paramList.add(new CreditConsumer(new BigDecimal("100000"), user2, 2));
+        paramList.add(new CreditAuto(new BigDecimal("50000"), user3, 3));
+        paramList2.add(new CreditAuto(new BigDecimal("220000"), user1, 1));
+        paramList2.add(new CreditConsumer(new BigDecimal("1000"), user1, 2));
+        paramList2.add(new CreditAuto(new BigDecimal("50000"), user3, 3));
+        listUsersCredit = new ListUsersCredit(paramList);
 
         testTree = new TreeSet<>();
         testTree.add(20);
@@ -46,7 +47,7 @@ class ListUsersCreditTest {
 
     @Test
     void calcCreditAmount() {
-        assertEquals(BigDecimal.valueOf(370000), listUsersCredit.calcCreditAmount());
+        assertEquals(new BigDecimal("370000"), listUsersCredit.calcCreditAmount());
     }
 
     @Test
@@ -59,14 +60,21 @@ class ListUsersCreditTest {
     void testCreditException() {
         assertThrows(CreditException.class, () -> {
             User userTest = new User(50, "Ахметов", "Руслан");
-            Credit credit = new CreditAuto(BigDecimal.valueOf(0), userTest, 55);
+            Credit credit = new CreditAuto(new BigDecimal("0"), userTest, 55);
+        });
+    }
+
+    @Test
+    void testUserCreateException() {
+        assertThrows(CreditException.class, () -> {
+            User userTest = new User(0, "Ахметов", "");
         });
     }
 
     @Test
     void testStruct(){
-        assertFalse(ParamList.equals(ParamList2));
+        assertFalse(paramList.equals(paramList2));
         assertEquals(testTree.pollLast(), 240);
-        ParamList.clear();
+        paramList.clear();
     }
 }
