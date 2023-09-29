@@ -14,15 +14,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 public class Order {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "Name")
+    @Column(name = "order_name")
     private String name;
 
-    @Column(name = "Order_face")
+    @Column(name = "order_face")
     @Enumerated(value = EnumType.STRING)
     private OrderFace orderFace;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

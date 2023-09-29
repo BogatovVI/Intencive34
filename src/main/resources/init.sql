@@ -1,20 +1,27 @@
 CREATE TABLE orders (
-    Id serial,
-    Name varchar(55) NOT NULL,
-    Order_face varchar(55)
+    id int,
+    user_id int,
+    order_name varchar(55) NOT NULL,
+    order_face varchar(55),
+    foreign key (user_id) references "public".users (id)
 );
 
 CREATE TABLE users (
-    Id serial,
-    Name varchar(55),
-    Surname varchar(55),
-    Birthday date,
-    Telephone varchar(55),
-    Email varchar(255),
-    Meta json,
-    Id_order int,
+    id int primary key ,
+    user_name varchar(55),
+    user_surname varchar(55),
+    birthday date,
+    telephone varchar(55),
+    email varchar(255),
+    meta json,
+/*    id_order int,*/
     dtype text
 --     FOREIGN KEY (Id_order) REFERENCES orders (id)
 );
 
-SELECT * FROM users JOIN orders o on o.Id = users.Id_order;
+SELECT * FROM users u
+INNER JOIN orders o
+on u.id = o.user_id;
+
+SELECT * FROM users
+SELECT * FROM orders

@@ -16,28 +16,28 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "Name")
+    @Column(name = "user_name")
     private String name;
 
-    @Column(name = "Surname")
+    @Column(name = "user_surname")
     private String surname;
 
-    @Column(name = "Birthday")
+    @Column(name = "birthday")
     @Convert(converter = BirthdayConvector.class)
     private Birthday birthday;
 
-    @Column(name = "Telephone")
+    @Column(name = "telephone")
     private String telephone;
 
-    @Column(name = "Email")
+    @Column(name = "email")
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
 }
