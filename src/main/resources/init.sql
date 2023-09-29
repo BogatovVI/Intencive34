@@ -1,16 +1,20 @@
 CREATE TABLE orders (
-    Id bigserial PRIMARY KEY,
-    Name varchar(55) NOT NULL
+    Id serial,
+    Name varchar(55) NOT NULL,
+    Order_face varchar(55)
 );
 
 CREATE TABLE users (
-    Id bigserial PRIMARY KEY,
-    Name varchar(55) NOT NULL,
-    Surname varchar(55) NOT NULL,
-    Telephone varchar(55) NOT NULL,
-    Email varchar(255) NOT NULL,
-    Id_order bigint,
-    FOREIGN KEY (Id_order) REFERENCES orders (id)
+    Id serial,
+    Name varchar(55),
+    Surname varchar(55),
+    Birthday date,
+    Telephone varchar(55),
+    Email varchar(255),
+    Meta json,
+    Id_order int,
+    dtype text
+--     FOREIGN KEY (Id_order) REFERENCES orders (id)
 );
 
 SELECT * FROM users JOIN orders o on o.Id = users.Id_order;
