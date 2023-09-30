@@ -40,11 +40,14 @@ public class HibernateTest {
         try{
             session = sessionFactory.openSession();
             session.beginTransaction();
+
+
             List<Order> orderList = Stream.generate(
                     () -> Order
                             .builder()
                             .name("Order_" + RandomString.make(4))
                             .orderFace(OrderFace.LEGAL)
+                            .user(user)
                             .build())
                     .limit(2)
                     .toList();
@@ -56,7 +59,6 @@ public class HibernateTest {
                     .surname("Богатов")
                     .name("Владислав")
                     .telephone("+7999999999")
-                    .orders(orderList)
                     .build();
 
             userOrder = new UserOrder("{\"Userinfo\":\"User test\"}");

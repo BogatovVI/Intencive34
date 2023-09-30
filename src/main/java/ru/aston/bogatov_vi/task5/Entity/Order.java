@@ -25,4 +25,8 @@ public class Order {
     @Column(name = "Order_face")
     @Enumerated(value = EnumType.STRING)
     private OrderFace orderFace;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "User_id")
+    private User user;
 }
